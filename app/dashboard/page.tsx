@@ -1,45 +1,32 @@
+'use client'
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Users, Clock, AlertTriangle, MessageSquare, RefreshCw, CheckCircle } from 'lucide-react'
 import Link from 'next/link'
-
-function getStats() {
-  try {
-    // Get data from localStorage (demo implementation)
-    const workers = JSON.parse(localStorage.getItem('workers') || '[]')
-    const complaints = JSON.parse(localStorage.getItem('complaints') || '[]')
-    const renewals = JSON.parse(localStorage.getItem('renewals') || '[]')
-
-    const totalWorkers = workers.length
-    const pendingWorkers = workers.filter((w: any) => w.status === 'pending').length
-    const approvedWorkers = workers.filter((w: any) => w.status === 'approved').length
-    const riskFlagged = workers.filter((w: any) => w.hasRiskFlag).length
-    const openComplaints = complaints.filter((c: any) => ['open', 'in_review'].includes(c.status)).length
-    const pendingRenewals = renewals.filter((r: any) => r.status === 'pending').length
-
-    return {
-      totalWorkers,
-      pendingWorkers,
-      approvedWorkers,
-      riskFlagged,
-      openComplaints,
-      pendingRenewals,
-    }
-  } catch (err) {
-    console.error('Error fetching stats:', err)
-    // Return mock stats when localStorage is not available
-    return {
-      totalWorkers: 42,
-      pendingWorkers: 8,
-      approvedWorkers: 31,
-      riskFlagged: 3,
-      openComplaints: 5,
-      pendingRenewals: 4,
-    }
-  }
-}
+import { useEffect, useState } from 'react'
+import { getWorkers } from '@/lib/workers'
 
 export default function DashboardPage() {
-  const stats = getStats()
+  const [stats, setStats] = useState({
+    totalWorkers: 0,
+    pendingWorkers: 0,
+    approvedWorkers: 0,
+    riskFlagged: 0,
+  })
+
+  useEffect(() => {
+    // Load data from shared worker storage
+    const workers = getWorkers()
+
+    const newStats = {
+      totalWorkers: workers.length,
+      pendingWorkers: workers.filter(w => w.status === 'pending').length,
+      approvedWorkers: workers.filter(w => w.status === 'approved').length,
+      riskFlagged: workers.filter(w => w.biometricData.verified === false).length,
+    }
+
+    setStats(newStats)
+  }, [])
 
   const statCards = [
     {

@@ -39,17 +39,17 @@ export default function ESevaiLoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 flex items-center justify-center p-4">
       <div className="w-full max-w-md">
         {/* Header */}
         <div className="text-center mb-8">
           <div className="flex justify-center mb-4">
-            <div className="bg-blue-600 p-3 rounded-full">
+            <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-3 rounded-full shadow-lg hover-lift transition-transform">
               <Building2 className="h-8 w-8 text-white" />
             </div>
           </div>
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">E-Sevai Maiyam</h1>
-          <p className="text-gray-600">Migrant Worker Verification Portal</p>
+          <h1 className="text-2xl font-bold text-gray-900 mb-2">E-Sevai Maiyam Portal</h1>
+          <p className="text-gray-600">Secure biometric verification system</p>
         </div>
 
         <Card className="shadow-lg">

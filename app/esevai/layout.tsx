@@ -12,11 +12,11 @@ export default function ESevaiLayout({
 }: {
   children: React.ReactNode
 }) {
+  // Nested layouts should not include <html> or <body>.
+  // Root layout (`app/layout.tsx`) controls those elements and classes.
   return (
-    <html lang="en">
-      <body className="antialiased">
-        {children}
-      </body>
-    </html>
+    <>
+      {children}
+    </>
   )
 }

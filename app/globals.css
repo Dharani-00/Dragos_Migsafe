@@ -38,7 +38,7 @@
   --sidebar-accent-foreground: oklch(0.95 0 0);
   --sidebar-border: oklch(0.28 0.03 250);
   --sidebar-ring: oklch(0.45 0.15 250);
-  
+
   /* Status colors */
   --status-pending: oklch(0.75 0.15 85);
   --status-approved: oklch(0.55 0.15 145);
@@ -46,6 +46,19 @@
   --status-open: oklch(0.55 0.15 250);
   --status-in-review: oklch(0.65 0.15 45);
   --status-resolved: oklch(0.55 0.15 145);
+
+  /* E-Sevai Theme Colors */
+  --esevai-primary: oklch(0.45 0.15 220);
+  --esevai-secondary: oklch(0.55 0.12 180);
+  --esevai-accent: oklch(0.65 0.15 160);
+  --esevai-success: oklch(0.55 0.15 145);
+  --esevai-warning: oklch(0.75 0.15 85);
+  --esevai-error: oklch(0.55 0.2 25);
+
+  /* Transition utilities */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .dark {
@@ -139,4 +152,34 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* Transition utilities */
+.transition-fast {
+  transition: all var(--transition-fast);
+}
+
+.transition-normal {
+  transition: all var(--transition-normal);
+}
+
+.transition-slow {
+  transition: all var(--transition-slow);
+}
+
+.transition-colors-fast {
+  transition: color var(--transition-fast), background-color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.transition-transform {
+  transition: transform var(--transition-normal);
+}
+
+.hover-lift {
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.hover-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }

@@ -33,7 +33,7 @@ interface ExpiringWorker {
 
 function getRenewals(status?: string): Renewal[] {
   try {
-    
+    ```
     const storedRenewals = JSON.parse(localStorage.getItem('renewals') || '[]')
 
     // Filter by status if provided
